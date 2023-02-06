@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Tambah Album - IMR Entertainment</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet"> 
+    
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid position-relative d-flex p-0">
+        <!-- Spinner Start -->
+        <div id="spinner" class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <!-- Spinner End -->
+
+
+         <!-- Sidebar Start -->
+         <div class="sidebar pe-4 pb-3">
+            <nav class="navbar bg-secondary navbar-dark">
+                <a href="index.html" class="navbar-brand mx-2 mb-1">
+                    <h3 class="text-primary">IMR Entertainment</h3>
+                </a>
+                <div class="d-flex align-items-center ms-4 mb-4">
+                    <div class="position-relative">
+                    </div>
+                    
+                </div>
+                <div class="navbar-nav w-100">
+                    <a href="index.html" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <div class="nav-item dropdown">
+                        <div class="dropdown-menu bg-transparent border-0">
+                        </div>
+                    </div>
+                    <a href="form_single.html" class="nav-item nav-link"><i class="fa fa-music me-2"></i>Submit Single</a>
+                    <a href="form_album.html" class="nav-item nav-link active"><i class="fa fa-headphones me-2"></i>Submit Album</a>
+                    <a href="request.html" class="nav-item nav-link"><i class="fa fa-history me-2"></i>Requests</a>
+                    <a href="contact.html" class="nav-item nav-link"><i class="fa fa-phone me-2"></i>Contact Admin</a>
+
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <!-- Sidebar End -->
+
+
+         <!-- Content Start -->
+         <div class="content">
+            <!-- Navbar Start -->
+            <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+                    <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
+                </a>
+                <a href="#" class="sidebar-toggler flex-shrink-0">
+                    <i class="fa fa-bars"></i>
+                </a>
+               
+                <div class="navbar-nav align-items-center ms-auto">
+                    <div class="nav-item dropdown">
+                       
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                            <a href="#" class="dropdown-item">
+                                <div class="d-flex align-items-center">
+                                    
+                                </div>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <div class="d-flex align-items-center">
+                                   
+                                </div>
+                            </a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                                <div class="d-flex align-items-center">
+                                   
+                                </div>
+                       
+                    </div>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                            <img class="rounded-circle me-lg-2" src="img/profil.png" alt="" style="width: 30px; height: 30px;">
+                            <span class="d-none d-lg-inline-flex"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+                            <a href="profil.html" class="dropdown-item">My Profile</a>
+                            <a href="logout.php" class="dropdown-item">Log Out</a>
+                </div>
+            </nav>
+            <!-- Navbar End -->
+
+
+            <!-- Form Start -->
+            <div class="container-fluid pt-4 px-4 center">
+                <div class="row g-4 center">
+                    <div class="col-sm-24 col-xl-12">
+                        <div class="bg-secondary rounded h-100 p-4">
+                            <h2 class="mb-4 text-center">TAMBAH ALBUM BARU</h2>
+                            <form>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Judul Lagu<span class="required">*</span></label>
+                                    <input type="text" class="form-control" id="title" name="title" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="cname" class="form-label">Artis<span class="required">*</span></label>
+                                    <input type="text" class="form-control" id="artis" name="artis" required />
+                                    <div id="artis" class="form-text"><small>Nama artis tidak mengandung kata general seperti (Music/Musik, Remix, Studio, Official, dll.)</small>
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="cname" class="form-label">Featuring Artis</label>
+                                    <input type="text" class="form-control" id="ft_artis" name="ft_artis"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="cname" class="form-label">Bahasa<span class="required">*</span></label>
+                                    <input type="text" class="form-control" id="bhs" name="bhs" minlength="5" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="cname" class="form-label">Genre<span class="required">*</span></label>
+                                </div>
+                                <select class="form-select mb-3" aria-label="Default select example">
+                                    <option value="" selected disabled>-- Pilih Genre Musik --</option>
+                                    <option value="1">Pop</option>
+                                    <option value="2">Rock</option>
+                                    <option value="3">Alternative</option>
+                                    <option value="3">Blues</option>
+                                    <option value="4">Dance</option>
+                                    <option value="5">Hiphop/Rap</option>
+                                    <option value="6">Jazz</option>
+                                    <option value="7">RnB</option>
+                                    <option value="8">Reggae</option>
+                                    <option value="9">Heavy Metal</option>
+                                    <option value="10">Ska</option>
+                                    <option value="11">Punk</option>
+                                    <option value="12">Dangdut</option>
+                                    <option value="13">Instrumental</option>
+                                    <option value="14">Acapella</option>
+                                    <option value="15">Folk</option>
+                                    <option value="16">Gospel</option>
+                                    <option value="17">EDM</option>
+                                    <option value="18">Koplo</option>
+                                    <option value="19">New Wave</option>
+                                    <option value="16">Ethnic</option>
+                                    <option value="17">World Music</option>
+                                    <option value="18">House Music</option>
+                                    <option value="19">Religi</option>
+                                </select>
+                                <div class="mb-3">
+                                    <label for="cname" class="form-label">Sub Genre</label>
+                                    <input type="text" class="form-control" id="subgenre" name="subgenre"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="date" class="form-label">Tanggal Rilis<span class="required">*</span></label>
+                                    <input type="date" class="form-control" id="tgl_release" name="tgl_release" required/>
+                                    <div id="tgl_release" class="form-text"><small>Isi dengan tanggal perilisan yang diinginkan (minimal 7 Hari dari pengisian formulir ini)</small>
+                                    </div>
+                                    <br>
+                                    <div class="mb-3">
+                                        <label for="curl" class="form-label">Link Spotify</label>
+                                        <input type="url" class="form-control" id="spotify" name="spotify"/>
+                                        <div id="spotify" class="form-text"><small>Isi jika sudah memiliki akun artis spotify</small>
+                                        </div>
+                                    <br>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="curl" class="form-label">Link iTunes</label>
+                                        <input type="url" class="form-control" id="itunes" name="itunes"/>
+                                        <div id="itunes" class="form-text"><small>Isi jika sudah memiliki akun artis iTunes</small>
+                                    </div>
+                                    <br>
+                                    <div class="mb-3">
+                                        <label for="curl" class="form-label">Link Channel Youtube</label>
+                                        <input type="url" class="form-control" id="youtube" name="youtube"/>
+                                        <div id="youtube" class="form-text"><small>Isi jika sudah memiliki Channel Youtube</small>
+                                    </div>
+                                    <br>
+                                    <div class="mb-3">
+                                        <label for="cname" class="form-label">Contact Person<span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="cp" name="cp" required/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cname" class="form-label">Komposer<span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="komposer" name="komposer" required/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cname" class="form-label">Arranger<span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="arranger" name="arranger" required/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cname" class="form-label">Produser<span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="produser" name="produser" required/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cname" class="form-label">Tahun Produksi<span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="tahun_produksi" name="tahun_produksi" required/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cname" class="form-label">Gambar Cover Lagu<span class="required">*</span></label>
+                                        <input type="file" class="form-control" id="cover" name="cover" accept="image/jpg, image/jpeg" required/>
+                                        <small>Silahkan masukkan gambar dengan resolusi 1440x1440 Piksel dengan Format JPG, High Resolution/Tidak Blur. Pastikan dalam cover hanya ada tulisan judul lagu dan nama artist </small>
+                                    </div>
+                                    <br>
+                                    <div class="mb-3">
+                                        <label for="cname" class="form-label">Upload Lagu<span class="required">*</span></label>
+                                        <input type="file" class="form-control" id="lagu" name="lagu" accept="audio/x-wav" multiple required/>
+                                        <small>Silahkan Masukan Beberapa Lagu Dengan Format  WAV</small>
+                                    </div>
+                                    <br>
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Judul Lagu 1<span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="title" name="title" required />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cname" class="form-label">Pencipta Lagu<span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="pl" name="pl" required/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Judul Lagu 2<span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="title" name="title" required />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cname" class="form-label">Pencipta Lagu<span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="pl" name="pl" required/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Judul Lagu 3<span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="title" name="title" required />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cname" class="form-label">Pencipta Lagu<span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="pl" name="pl" required/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Judul Lagu 4<span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="title" name="title" required />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cname" class="form-label">Pencipta Lagu<span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="pl" name="pl" required/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Judul Lagu 5<span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="title" name="title" required />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cname" class="form-label">Pencipta Lagu<span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="pl" name="pl" required/>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Judul Lagu 6<span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="title" name="title" required />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cname" class="form-label">Pencipta Lagu<span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="pl" name="pl" required/>
+                                    </div> <div class="mb-3">
+                                        <label for="name" class="form-label">Judul Lagu 7<span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="title" name="title" required />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cname" class="form-label">Pencipta Lagu<span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="pl" name="pl" required/>
+                                    </div> <div class="mb-3">
+                                        <label for="name" class="form-label">Judul Lagu 8<span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="title" name="title" required />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cname" class="form-label">Pencipta Lagu<span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="pl" name="pl" required/>
+                                    </div> <div class="mb-3">
+                                        <label for="name" class="form-label">Judul Lagu 9<span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="title" name="title" required />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cname" class="form-label">Pencipta Lagu<span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="pl" name="pl" required/>
+                                    </div> <div class="mb-3">
+                                        <label for="name" class="form-label">Judul Lagu 10<span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="title" name="title" required />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="cname" class="form-label">Pencipta Lagu<span class="required">*</span></label>
+                                        <input type="text" class="form-control" id="pl" name="pl" required/>
+                                    </div>
+                                    <br>
+                                    <div class="mb-3">
+                                        <label for="cname" class="form-label">Upload KTP<span class="required">*</span></label>
+                                        <input type="file" class="form-control" id="ktp" name="ktp" accept="image/jpg, image/jpeg, image/png" required/>
+                                        <small>MOHON NAMA FILE KTP YANG DIUPLOAD SESUAI DENGAN NAMA LENGKAP YANG TERTERA DI KTP</small>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    
+                               
+                                </fieldset>
+                                <br>
+                                <div class="row mb-3">
+                                    <legend class="col-form-label col-sm-2 pt-0">Ceklis<span class="required">*</span></legend>
+                                    <div class="col-sm-12">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="gridCheck1">
+                                            <label class="form-check-label" for="gridCheck1">
+                                                Pastikan anda sudah mengisi data di atas dengan benar, data yang telah dikonfirmasi tidak dapat diubah.
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+                   
+            </div>
+            <!-- Form End -->
+
+
+            <!-- Footer Start -->
+            <div class="container-fluid pt-4 px-4">
+                <div class="bg-secondary rounded-top p-4">
+                    <div class="row">
+                        <div class="col-24 col-sm-12 text-center text-center">
+                            &copy; <a href="https://imrentertainment.com">PT. IMR Entertainment</a>. All Right Reserved. 
+                        </div>
+                        <div class="col-12 col-sm-6 text-center text-sm-end">
+            </div>
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/chart/chart.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
