@@ -72,6 +72,7 @@
               'nama_belakang' => $data->nama_belakang,
               'username' => $data->username,
               'email' => $data->email,
+              'level' => $data->level,
               'login_date' => date('Y-m-d'),
               'login_time' => date('H:i:s') 
             ];

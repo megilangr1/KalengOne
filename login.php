@@ -19,13 +19,13 @@
                 'error_msg' => 'Email / Password yang anda masukan salah !',
             ];
         } else {
-            var_dump($data);
             $_SESSION['user'] = [
                 'id' => $data->id,
                 'nama_depan' => $data->nama_depan,
                 'nama_belakang' => $data->nama_belakang,
                 'username' => $data->username,
                 'email' => $data->email,
+                'level' => $data->level,
                 'login_date' => date('Y-m-d'),
                 'login_time' => date('H:i:s') 
             ];
