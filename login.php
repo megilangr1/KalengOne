@@ -1,4 +1,39 @@
-<?php require_once('config/koneksi.php'); ?>
+<?php 
+    require_once('config/koneksi.php');
+    require_once('config/helper.php');
+        
+    if (isset($_SESSION['user'])) { header('location: index.php'); }
+
+    $errorMessage = [];
+    if (isset($_POST['loginUser'])) {
+        $email = htmlspecialchars(trim($_POST['email']));
+        $password = htmlspecialchars(trim($_POST['password']));
+
+        $checkUser = $koneksi->query("SELECT * FROM users WHERE email='$email'");
+        $data = $checkUser->fetch_object();
+        if ($data == null) {
+            $errorMessage[] = [
+                'name' => 'user',
+                'alias' => 'Login Gagal',
+                'success' => false,
+                'error_msg' => 'Email / Password yang anda masukan salah !',
+            ];
+        } else {
+            var_dump($data);
+            $_SESSION['user'] = [
+                'id' => $data->id,
+                'nama_depan' => $data->nama_depan,
+                'nama_belakang' => $data->nama_belakang,
+                'username' => $data->username,
+                'email' => $data->email,
+                'login_date' => date('Y-m-d'),
+                'login_time' => date('H:i:s') 
+            ];
+
+            echo "<script>window.location='". $baseUrl ."';</script>";
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,37 +80,49 @@
 
         <!-- Sign In Start -->
         <div class="container-fluid">
-          <form action="login.php" method="post">
-            <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
-                <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
-                    <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
-                        <div class="d-flex align-items-center justify-content-between mb-3">
-                            <a href="index.php" class="">
-                                <h3 class="text-primary"><i class="fa fa-user-edit me-2"></i>IMR Entertainment</h3>
-                            </a>
-                            <h3>Login</h3>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com">
-                            <label for="floatingInput">Alamat Email</label>
-                        </div>
-                        <div class="form-floating mb-4">
-                            <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
-                            <label for="floatingPassword">Password</label>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-between mb-4">
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">Ingatkan Saya!</label>
+            <form action="login.php" method="post">
+                <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
+                    <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+                        <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
+                            <div class="align-items-center mb-3">
+                                <a href="#" class="text-center">
+                                    <h4 class="text-primary">
+                                        <i class="fa fa-user-edit me-2"></i> &ensp; IMR Entertainment
+                                        <hr class="my-2">
+                                        <div class="text-white">Login</div>
+                                    </h4>
+                                </a>
                             </div>
-                            <a href="forgot.php">Lupa Password</a>
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com" required autofocus>
+                                <label for="floatingInput">Alamat Email</label>
+                            </div>
+                            <div class="form-floating mb-4">
+                                <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" required>
+                                <label for="floatingPassword">Password</label>
+                            </div>
+                            <?php if ($errorMessage != null) { ?>
+                                <div class="form-floating mb-4">
+                                    <div class="alert alert-danger px-1 py-3" role="alert" style="font-size: 12px !important;">
+                                        <ul class="mb-0">
+                                            <?php 
+                                            foreach ($errorMessage as $key => $value) {
+                                                if ($value['success'] == false) {
+                                                echo "<li>". $value['alias'] . ' <br> ' . $value['error_msg'] ."</li>";
+                                                }
+                                            }
+                                            ?>
+                                        </ul>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                            <button type="submit" class="btn btn-primary py-3 w-100 mb-4" name="loginUser">Login</button>
+                            <p class="text-center mb-0">Belum mempunyai Akun? <a href="register.php">Registrasi</a></p>
+                            <p class="text-center mb-0">Lupa password ? <a href="register.php">Klik disini</a></p>
                         </div>
-                        <button type="submit" class="btn btn-primary py-3 w-100 mb-4" name="loginUser">Login</button>
-                        <p class="text-center mb-0">Belum mempunyai Akun? <a href="signup.php">Registrasi</a></p>
                     </div>
                 </div>
-            </div>
-          </form>
+            </form>
         </div>
         <!-- Sign In End -->
     </div>
@@ -94,22 +141,4 @@
     <!-- Template Javascript -->
     <script src="assets/js/main.js"></script>
 </body>
-
 </html>
-
-<?php
-  if (isset($_POST['loginUser'])) {
-    try {
-      $email = htmlspecialchars(trim($_POST['email']));
-      $password = htmlspecialchars(trim($_POST['password']));
-
-      $checkUser = $koneksi->query("SELECT * FROM users WHERE email='$email'");
-      var_dump($checkUser->fetch_object());
-
-      // var_dump($_POST);
-    } catch (\Exception $e) {
-      var_dump($e);
-      die();
-    }
-  }
-?>

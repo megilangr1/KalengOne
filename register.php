@@ -45,13 +45,40 @@
       $errorMessage = $validate['res'];
     } else {
       $checkEmail = $koneksi->query("SELECT * FROM users WHERE email='". $userData['email'] ."' ");
-      if (count($checkEmail->fetch_array()) > 0) {
+      if ($checkEmail->fetch_array() != null) {
         $errorMessage[] = [
           'name' => 'email',
           'alias' => 'Alamat Email',
           'success' => false,
-          'error_msg' => 'Email Sudah di-Gunakan !',
+          'error_msg' => 'Sudah di-Gunakan !',
         ];
+      } else {
+        $createUser = $koneksi->query("INSERT INTO users VALUES (null, '" .$userData['nama_depan'] ."', '" .$userData['nama_belakang'] ."', '" .rand(1000000, 9999999) ."', '" .$userData['email'] ."', '" .$userData['password'] ."', '1', null, null)");
+        if (!$createUser) {
+          $errorMessage[] = [
+            'name' => 'fail-insert',
+            'alias' => 'Registrasi',
+            'success' => false,
+            'error_msg' => 'Gagal, Silahkan coba lagi dalam beberapa saat !',
+          ];
+        } else {
+          // Login Session 
+          $getUser = $koneksi->query("SELECT * FROM users WHERE email='". $userData['email'] ."'");
+          $data = $getUser->fetch_object();
+          if ($data != null) {
+            $_SESSION['user'] = [
+              'id' => $data->id,
+              'nama_depan' => $data->nama_depan,
+              'nama_belakang' => $data->nama_belakang,
+              'username' => $data->username,
+              'email' => $data->email,
+              'login_date' => date('Y-m-d'),
+              'login_time' => date('H:i:s') 
+            ];
+
+            echo "<script>window.location='". $baseUrl ."';</script>";
+          }
+        }
       }
     }
   }
@@ -115,19 +142,19 @@
                             <h3 class="text-center">Registrasi Akun</h3>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" name="nama_depan" class="form-control" id="floatingText" placeholder="Silahkan Masukan Nama Depan...">
+                            <input type="text" name="nama_depan" class="form-control" id="floatingText" placeholder="Silahkan Masukan Nama Depan..." required autofocus>
                             <label for="floatingText">Nama Depan</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" name="nama_belakang" class="form-control" id="floatingText" placeholder="Silahkan Masukan Nama Belakang...">
+                            <input type="text" name="nama_belakang" class="form-control" id="floatingText" placeholder="Silahkan Masukan Nama Belakang..." required>
                             <label for="floatingText">Nama Belakang</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="email" name="email" class="form-control" id="floatingInput" placeholder="Silahkan Masukan Alamat Email...">
+                            <input type="email" name="email" class="form-control" id="floatingInput" placeholder="Silahkan Masukan Alamat Email..." required>
                             <label for="floatingInput">Alamat Email</label>
                         </div>
                         <div class="form-floating mb-4">
-                            <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Silahkan Masukan Password...">
+                            <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Silahkan Masukan Password..." required>
                             <label for="floatingPassword">Password</label>
                         </div>
                         <?php if ($errorMessage != null) { ?>
@@ -136,7 +163,9 @@
                                   <ul class="mb-0">
                                     <?php 
                                       foreach ($errorMessage as $key => $value) {
-                                        echo "<li>". $value['alias'] . ' - ' . $value['error_msg'] ."</li>";
+                                        if ($value['success'] == false) {
+                                          echo "<li>". $value['alias'] . ' - ' . $value['error_msg'] ."</li>";
+                                        }
                                       }
                                     ?>
                                   </ul>

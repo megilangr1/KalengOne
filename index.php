@@ -1,4 +1,10 @@
-<?php require_once('config/koneksi.php') ?>
+<?php 
+  require_once('config/koneksi.php');
+  require_once('config/helper.php');
+
+  $loginCheck = loginCheck();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

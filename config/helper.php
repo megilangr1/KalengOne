@@ -33,4 +33,13 @@
       'error_msg' => 'Input Tidak Boleh Kosong !'
     ];
   }
+
+  function loginCheck() {
+    if (isset($_SESSION['user'])) {
+      return $_SESSION['user'];
+    } else {
+      return header('location: login.php');
+      exit();
+    }
+  }
 ?>
