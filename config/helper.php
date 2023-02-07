@@ -1,30 +1,36 @@
 <?php 
   function validateArray($data, $arrayKey)
   {
-    $res = [];
     for ($i=0; $i < count($arrayKey); $i++) { 
-      $validate = validasiKey($data, $arrayKey[$i]);
-      $res[$arrayKey[$i]] = $validate;
+      $validate = validasiRequired($data, $arrayKey[$i]['name']);
+      $arrayKey[$i]['success'] = $validate['success'];
+      $arrayKey[$i]['error_msg'] = $validate['error_msg'];
     }
 
     $code = true;
-    foreach ($res as $key => $value) {
-      if ($value == false) {
+    foreach ($arrayKey as $key => $value) {
+      if ($value['success'] == false) {
         $code = false;
       }
     }
 
     return [
       'code' => $code,
-      'res' => $res
+      'res' => $arrayKey,
     ];
   }
 
-  function validasiKey($data, $key)
+  function validasiRequired($data, $key)
   {
     if (isset($data[$key]) && $data[$key] != null) {
-      return true;
+      return [
+        'success' => true,
+        'error_msg' => null, 
+      ];
     }
-    return false;
+    return [
+      'success' => false,
+      'error_msg' => 'Input Tidak Boleh Kosong !'
+    ];
   }
 ?>

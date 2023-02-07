@@ -16,28 +16,44 @@
       [
         'name' => 'nama_depan',
         'alias' => 'Nama Depan',
-        'error' => false,
+        'success' => false,
+        'error_msg' => null,
       ],
       [
         'name' => 'nama_belakang',
         'alias' => 'Nama Belakang',
-        'error' => false,
+        'success' => false,
+        'error_msg' => null,
       ],
       [
         'name' => 'email',
         'alias' => 'Alamat Email',
+        'success' => false,
+        'error_msg' => null,
       ],
       [
         'name' => 'password',
         'alias' => 'Password',
+        'success' => false,
+        'error_msg' => null,
       ]
-      
     ];    
+
     $validate = validateArray($userData, $validateArray);
     if ($validate['code'] == false) {
+      $validateArray = $validate['res'];
       $errorMessage = $validate['res'];
+    } else {
+      $checkEmail = $koneksi->query("SELECT * FROM users WHERE email='". $userData['email'] ."' ");
+      if (count($checkEmail->fetch_array()) > 0) {
+        $errorMessage[] = [
+          'name' => 'email',
+          'alias' => 'Alamat Email',
+          'success' => false,
+          'error_msg' => 'Email Sudah di-Gunakan !',
+        ];
+      }
     }
-
   }
 ?>
 
@@ -114,6 +130,19 @@
                             <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Silahkan Masukan Password...">
                             <label for="floatingPassword">Password</label>
                         </div>
+                        <?php if ($errorMessage != null) { ?>
+                          <div class="form-floating mb-4">
+                              <div class="alert alert-danger px-1 py-3" role="alert" style="font-size: 12px !important;">
+                                  <ul class="mb-0">
+                                    <?php 
+                                      foreach ($errorMessage as $key => $value) {
+                                        echo "<li>". $value['alias'] . ' - ' . $value['error_msg'] ."</li>";
+                                      }
+                                    ?>
+                                  </ul>
+                              </div>
+                          </div>
+                        <?php } ?>
                         <!-- <div class="form-floating mb-4">
                             <input type="file" class="form-control" id="floatingPassword" placeholder="silahkan masukkan kata sandi">
                             <label for="floatingPassword">Upload Bukti Pembayaran</label>
