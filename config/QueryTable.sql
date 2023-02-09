@@ -13,6 +13,8 @@ CREATE TABLE IF NOT EXISTS users (
 	PRIMARY KEY (id)
 );
 
+INSERT INTO users VALUES (null, 'Admin', 'Pro', 'administrator', 'admin@mail.com', 'admin123', 0, now(), now());
+
 -- Table Album
 CREATE TABLE IF NOT EXISTS albums (
 	id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,

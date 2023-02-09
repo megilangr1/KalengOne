@@ -1,6 +1,6 @@
 <?php
 session_start();
-$baseUrl = "http://localhost/Other/music/";
+$baseUrl = "http://localhost/Other/Imr/";
 date_default_timezone_set("Asia/Jakarta");
 
 $koneksi = new mysqli('localhost', 'root', '', 'imr');

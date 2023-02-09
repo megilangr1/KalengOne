@@ -1,14 +1,15 @@
 <?php
-require_once('config/koneksi.php');
-require_once('config/helper.php');
+require_once('../config/koneksi.php');
+require_once('../config/helper.php');
 
 $loginCheck = loginCheck();
-if (isset($loginCheck['level']) && $loginCheck['level'] < 1) {
-  header('location: '. $baseUrl . 'admin/admin.php');
+if (isset($loginCheck['level']) && $loginCheck['level'] > 0) {
+  header('location: '. $baseUrl . 'index.php');
 }
 ?>
 
 <?php include_once('layouts/head.php') ?>
+
 <!-- Main Content -->
 <div class="col-12">
   <div class="bg-secondary rounded p-4 my-1">
@@ -41,21 +42,21 @@ if (isset($loginCheck['level']) && $loginCheck['level'] < 1) {
               <marquee behavior="" direction="right">
                 Status Akun :
                 <?php
-                $stat = $loginCheck['level'];
-                switch ($stat) {
-                  case 0:
-                    echo 'Administrator';
-                    break;
-                  case 1:
-                    echo 'Akun Gratis';
-                    break;
-                  case 2:
-                    echo 'Akun Berbayar';
-                    break;
-                  default:
-                    echo "-";
-                    break;
-                }
+                  $stat = $loginCheck['level'];
+                  switch ($stat) {
+                    case 0:
+                      echo 'Administrator';
+                      break;
+                    case 1:
+                      echo 'Akun Gratis';
+                      break;
+                    case 2:
+                      echo 'Akun Berbayar';
+                      break;
+                    default:
+                      echo "-";
+                      break;
+                  }
                 ?>
               </marquee>
             </button>

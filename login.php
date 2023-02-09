@@ -30,7 +30,13 @@
                 'login_time' => date('H:i:s') 
             ];
 
-            echo "<script>window.location='". $baseUrl ."';</script>";
+            if ($data->level > 0) {
+                echo "<script>window.location='". $baseUrl ."';</script>";
+            } else {
+                echo "<script>window.location='". $baseUrl ."admin/admin.php';</script>";
+            }
+
+
         }
     }
 ?>
