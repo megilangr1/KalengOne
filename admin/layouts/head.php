@@ -46,7 +46,7 @@
     <!-- Sidebar Start -->
     <div class="sidebar pe-4 pb-3">
       <nav class="navbar bg-secondary navbar-dark">
-        <a href="index.html" class="navbar-brand mx-2 mb-1">
+        <a href="<?=$baseUrl?>index.php" class="navbar-brand mx-2 mb-1">
           <h3 class="text-primary">IMR Entertainment</h3>
         </a>
         <div class="d-flex align-items-center ms-4 mb-4">
@@ -54,7 +54,7 @@
           </div>
         </div>
         <div class="navbar-nav w-100">
-          <a href="index.php" class="nav-item nav-link active"><i class="fa fa-home me-2"></i>Menu Utama</a>
+          <a href="<?=$baseUrl?>index.php" class="nav-item nav-link active"><i class="fa fa-home me-2"></i>Menu Utama</a>
           <div class="nav-item dropdown">
             <div class="dropdown-menu bg-transparent border-0">
             </div>

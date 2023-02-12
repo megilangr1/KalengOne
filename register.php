@@ -53,7 +53,7 @@
           'error_msg' => 'Sudah di-Gunakan !',
         ];
       } else {
-        $createUser = $koneksi->query("INSERT INTO users VALUES (null, '" .$userData['nama_depan'] ."', '" .$userData['nama_belakang'] ."', '" .rand(1000000, 9999999) ."', '" .$userData['email'] ."', '" .$userData['password'] ."', '1', null, null)");
+        $createUser = $koneksi->query("INSERT INTO users (nama_depan, nama_belakang, username, email, password, level) VALUES ('" .$userData['nama_depan'] ."', '" .$userData['nama_belakang'] ."', '" .rand(1000000, 9999999) ."', '" .$userData['email'] ."', '" .$userData['password'] ."', '1')");
         if (!$createUser) {
           $errorMessage[] = [
             'name' => 'fail-insert',

@@ -63,7 +63,7 @@
           <a href="contact.html" class="nav-item nav-link"><i class="fa fa-phone me-2"></i>Contact Admin</a>
 
           <?php if (isset($loginCheck['level']) && $loginCheck['level'] == 1) { ?> 
-            <a href="#" class="nav-item nav-link"><i class="fa fa-coins me-2"></i>Upgrade Akun</a>
+            <a href="<?=$baseUrl?>users/upgrade_akun.php" class="nav-item nav-link"><i class="fa fa-coins me-2"></i>Upgrade Akun</a>
           <?php } ?>
         </div>
       </nav>

@@ -136,7 +136,7 @@ $jumlahUser = count($dataUser->fetch_all());
             <?php } ?>
           <?php } else { ?>
             <tr>
-              <td class="text-center align-middle" colspan="5"></td>
+              <td class="text-center align-middle" colspan="6">Belum Ada Data</td>
             </tr>
           <?php } ?>
         </tbody>
