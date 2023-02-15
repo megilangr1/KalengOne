@@ -88,12 +88,13 @@ $jumlahUser = count($dataUser->fetch_all());
       <table class="table table-bordered table-hover">
         <thead>
           <tr>
-            <th class="text-center align-middle">No.</th>
-            <th class="text-center align-middle">Nama Depan</th>
-            <th class="text-center align-middle">Nama Belakang</th>
-            <th class="text-center align-middle">Email</th>
-            <th class="text-center align-middle">Status</th>
-            <th class="text-center align-middle">#</th>
+            <th class="text-center align-middle" style="font-size: 14px !important;">No.</th>
+            <th class="text-center align-middle" style="font-size: 14px !important;">Nama Depan</th>
+            <th class="text-center align-middle" style="font-size: 14px !important;">Nama Belakang</th>
+            <th class="text-center align-middle" style="font-size: 14px !important;">Email</th>
+            <th class="text-center align-middle" style="font-size: 14px !important;">Status</th>
+            <th class="text-center align-middle" style="font-size: 14px !important;">Bukti Pembayaran</th>
+            <th class="text-center align-middle" style="font-size: 14px !important;">#</th>
           </tr>
         </thead>
         <tbody>
@@ -101,11 +102,11 @@ $jumlahUser = count($dataUser->fetch_all());
             <?php $no = 1;?>
             <?php foreach ($dataUser as $key => $value) { ?>
               <tr>
-                <td class="text-center align-middle"><?=$no++?></td>
-                <td class="text-center align-middle"><?=$value['nama_depan']?></td>
-                <td class="text-center align-middle"><?=$value['nama_belakang']?></td>
-                <td class="text-center align-middle"><?=$value['email']?></td>
-                <td class="text-center align-middle">
+                <td class="text-center align-middle" style="font-size: 12px !important;"><?=$no++?></td>
+                <td class="text-center align-middle" style="font-size: 12px !important;"><?=$value['nama_depan']?></td>
+                <td class="text-center align-middle" style="font-size: 12px !important;"><?=$value['nama_belakang']?></td>
+                <td class="text-center align-middle" style="font-size: 12px !important;"><?=$value['email']?></td>
+                <td class="text-center align-middle" style="font-size: 12px !important;">
                   <?php
                     $level = $value['level'];
                     switch ($level) {
@@ -124,7 +125,17 @@ $jumlahUser = count($dataUser->fetch_all());
                     }
                   ?>
                 </td>
-                <td class="text-center align-middle">
+                <td class="text-center align-middle" style="font-size: 12px !important;">
+                  <a href="<?=$baseUrl . $value['lokasi_file']?>" target="_blank">
+                    <?=$value['nama_rekening_pengirim']?> - <?=$value['nama_rekening_pengirim']?>
+                  </a>
+                </td>
+                <td class="text-center align-middle" style="font-size: 12px !important;">
+                  <?php if (!$value['status_verifikasi']) { ?> 
+                    <a href="#" class="btn btn-success btn-sm">
+                      <span class="fa fa-check"></span> 
+                    </a>
+                  <?php } ?>
                   <a href="#" class="btn btn-warning btn-sm">
                     <span class="fa fa-edit"></span> 
                   </a>
