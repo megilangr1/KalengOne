@@ -34,11 +34,32 @@
     ];
   }
 
-  function loginCheck() {
+  function loginCheck($koneksi, $baseUrl) {
     if (isset($_SESSION['user'])) {
-      return $_SESSION['user'];
+      $check = $koneksi->query("SELECT * FROM users WHERE id='". $_SESSION['user']['id'] ."' ");
+      $data = $check->fetch_object();
+      if ($data != null) {
+        unset($_SESSION['user']);
+        
+        $_SESSION['user'] = [
+          'id' => $data->id,
+          'nama_depan' => $data->nama_depan,
+          'nama_belakang' => $data->nama_belakang,
+          'username' => $data->username,
+          'email' => $data->email,
+          'level' => $data->level,
+          'login_date' => date('Y-m-d'),
+          'login_time' => date('H:i:s') 
+        ];
+
+        return $_SESSION['user'];
+      } else {
+        unset($_SESSION['user']);
+        return header('location: '.$baseUrl.'login.php');
+        exit();
+      }
     } else {
-      return header('location: login.php');
+      return header('location: '.$baseUrl.'login.php');
       exit();
     }
   }

@@ -2,7 +2,7 @@
 require_once('../config/koneksi.php');
 require_once('../config/helper.php');
 
-$loginCheck = loginCheck();
+$loginCheck = loginCheck($koneksi, $baseUrl);
 if (isset($loginCheck['level']) && $loginCheck['level'] > 0) {
   header('location: '. $baseUrl . 'index.php');
 }
@@ -22,7 +22,7 @@ $jumlahUser = count($dataUser->fetch_all());
       <div class="col-sm-12 col-md-2">
         <i class="fa fa-user fa-3x text-primary"></i>
       </div>
-      <div class="col-sm-12 col-md-10">
+      <div class="col-12">
         <div class="row">
           <div class="col-md-4">
             <div class="ms-8">
@@ -126,22 +126,29 @@ $jumlahUser = count($dataUser->fetch_all());
                   ?>
                 </td>
                 <td class="text-center align-middle" style="font-size: 12px !important;">
-                  <a href="<?=$baseUrl . $value['lokasi_file']?>" target="_blank">
-                    <?=$value['nama_rekening_pengirim']?> - <?=$value['nama_rekening_pengirim']?>
-                  </a>
+                  <?php if ($value['lokasi_file'] != null) { ?>
+                    <a href="<?=$baseUrl . $value['lokasi_file']?>" target="_blank">
+                      <?=$value['nama_rekening_pengirim']?> - <?=$value['nama_rekening_pengirim']?>
+                    </a>
+                  <?php } else { echo "-"; } ?>
                 </td>
                 <td class="text-center align-middle" style="font-size: 12px !important;">
-                  <?php if (!$value['status_verifikasi']) { ?> 
-                    <a href="#" class="btn btn-success btn-sm">
-                      <span class="fa fa-check"></span> 
+                  <div class="btn-group">
+                    <?php if (!$value['status_verifikasi']) { ?> 
+                      <form action="<?=$baseUrl?>admin/confirm_user.php" method="post">
+                        <input type="hidden" name="email" value="<?=$value['email']?>" readonly>
+                        <button type="submit" class="btn btn-success btn-sm" name="confirm_user">
+                          <span class="fa fa-check"></span> 
+                        </button>
+                      </form>
+                    <?php } ?>
+                    <a href="#" class="btn btn-warning btn-sm">
+                      <span class="fa fa-edit"></span> 
                     </a>
-                  <?php } ?>
-                  <a href="#" class="btn btn-warning btn-sm">
-                    <span class="fa fa-edit"></span> 
-                  </a>
-                  <a href="#" class="btn btn-danger btn-sm">
-                    <span class="fa fa-trash"></span>
-                  </a>
+                    <a href="#" class="btn btn-danger btn-sm">
+                      <span class="fa fa-trash"></span>
+                    </a>
+                  </div>
                 </td>
               </tr>
             <?php } ?>

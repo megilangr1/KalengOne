@@ -2,7 +2,7 @@
 require_once('../config/koneksi.php');
 require_once('../config/helper.php');
 
-$loginCheck = loginCheck();
+$loginCheck = loginCheck($koneksi, $baseUrl);
 if (isset($loginCheck['level']) && $loginCheck['level'] > 0) {
   header('location: '. $baseUrl . 'index.php');
 }
@@ -17,7 +17,7 @@ if (isset($loginCheck['level']) && $loginCheck['level'] > 0) {
       <div class="col-sm-12 col-md-2">
         <i class="fa fa-user fa-3x text-primary"></i>
       </div>
-      <div class="col-sm-12 col-md-10">
+      <div class="col-12">
         <div class="row">
           <div class="col-md-4">
             <div class="ms-8">

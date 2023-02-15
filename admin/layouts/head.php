@@ -102,3 +102,24 @@
     <!-- Single & Album Start -->
     <div class="container-fluid pt-4 px-4">
       <div class="row g-6">
+        <?php if (isset($_SESSION['flash_error'])) { ?>
+          <div class="col-12">
+            <div class="alert alert-danger" role="alert">
+              <h4 class="alert-heading">Peringatan !</h4>
+              <p style="font-size: 12px !important;">
+                <?=$_SESSION['flash_error']?>
+              </p>
+            </div>
+          </div>
+        <?php unset($_SESSION['flash_error']); } ?>
+
+        <?php if (isset($_SESSION['flash_success'])) { ?>
+          <div class="col-12">
+            <div class="alert alert-success" role="alert">
+              <h4 class="alert-heading">Berhasil !</h4>
+              <p style="font-size: 12px !important;">
+                <?=$_SESSION['flash_success']?>
+              </p>
+            </div>
+          </div>
+        <?php unset($_SESSION['flash_success']); } ?>

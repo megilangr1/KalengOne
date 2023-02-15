@@ -1,5 +1,6 @@
 
 -- Table Users
+-- DROP TABLE users;
 CREATE TABLE IF NOT EXISTS users (
 	id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
 	nama_depan VARCHAR(255) NOT NULL,
@@ -19,36 +20,27 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 -- Insert Administrator
--- INSERT INTO users VALUES (null, 'Admin', 'Pro', 'administrator', 'admin@mail.com', 'admin123', 0, now(), now());
-INSERT INTO users (nama_depan, nama_belakang, username, email, password, level)
-SELECT * FROM (SELECT 'Admin', 'Pro', 'administrator', 'admin@mail.com', 'admin123', 0) AS tmp
+INSERT INTO users (nama_depan, nama_belakang, username, email, password, level, status_verifikasi)
+SELECT * FROM (SELECT 'Admin', 'Pro', 'administrator', 'admin@mail.com', 'admin123', 0, 1) AS tmp
 WHERE NOT EXISTS (
   SELECT email FROM users WHERE email = 'admin@mail.com'
 ) LIMIT 1;
 
 
--- Table User Verifies
-CREATE TABLE IF NOT EXISTS user_verifies (
-  id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-	user_id BIGINT UNSIGNED NOT NULL,
-  nama_pengirim VARCHAR(255) NOT NULL,
-	bank_pengirim VARCHAR(255) NOT NULL,
-	nama_file VARCHAR(255) NOT NULL,
-  lokasi_file TEXT NOT NULL,
+-- Table Album
+-- DROP TABLE albums;
+CREATE TABLE IF NOT EXISTS albums (
+	id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+	nama_album VARCHAR(255) NOT NULL,
+  tanggal_rilis DATE NOT NULL,
+  studio TEXT NULL,
+	genre_album VARCHAR(255) NOT NULL,
+
+	file_album VARCHAR(255) NULL,
+  lokasi_file TEXT NULL,
+  user_id BIGINT UNSIGNED NOT NULL,
+  
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	PRIMARY KEY (id)  
+	PRIMARY KEY (id)
 );
-
--- Table Album
--- CREATE TABLE IF NOT EXISTS albums (
--- 	id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
--- 	nama_album VARCHAR(255) NOT NULL,
---   deskripsi TEXT NULL,
---   status BOOLEAN DEFAULT false,
---   publish BOOLEAN DEFAULT false,
---   user_id BIGINT UNSIGNED NOT NULL,
---   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
---   updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
--- 	PRIMARY KEY (id)
--- );

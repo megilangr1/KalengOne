@@ -9,7 +9,7 @@
         $email = htmlspecialchars(trim($_POST['email']));
         $password = htmlspecialchars(trim($_POST['password']));
 
-        $checkUser = $koneksi->query("SELECT * FROM users WHERE email='$email'");
+        $checkUser = $koneksi->query("SELECT * FROM users WHERE email='$email' AND password='$password' ");
         $data = $checkUser->fetch_object();
         if ($data == null) {
             $errorMessage[] = [

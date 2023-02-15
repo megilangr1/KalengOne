@@ -44,7 +44,7 @@
     <!-- Sidebar Start -->
     <div class="sidebar pe-4 pb-3">
       <nav class="navbar bg-secondary navbar-dark">
-        <a href="index.html" class="navbar-brand mx-2 mb-1">
+        <a href="<?=$baseUrl?>index.php" class="navbar-brand mx-2 mb-1">
           <h3 class="text-primary">IMR Entertainment</h3>
         </a>
         <div class="d-flex align-items-center ms-4 mb-4">
@@ -52,15 +52,15 @@
           </div>
         </div>
         <div class="navbar-nav w-100">
-          <a href="index.php" class="nav-item nav-link active"><i class="fa fa-home me-2"></i>Menu Utama</a>
+          <a href="<?=$baseUrl?>index.php" class="nav-item nav-link active"><i class="fa fa-home me-2"></i>Menu Utama</a>
           <div class="nav-item dropdown">
             <div class="dropdown-menu bg-transparent border-0">
             </div>
           </div>
+          <a href="<?=$baseUrl?>album/index.php" class="nav-item nav-link"><i class="fa fa-headphones me-2"></i>Data Album</a>
           <a href="form_single.html" class="nav-item nav-link"><i class="fa fa-music me-2"></i>Submit Single</a>
-          <a href="form_album.html" class="nav-item nav-link"><i class="fa fa-headphones me-2"></i>Submit Album</a>
-          <a href="request.html" class="nav-item nav-link"><i class="fa fa-history me-2"></i>Requests</a>
-          <a href="contact.html" class="nav-item nav-link"><i class="fa fa-phone me-2"></i>Contact Admin</a>
+          <!-- <a href="request.html" class="nav-item nav-link"><i class="fa fa-history me-2"></i>Requests</a> -->
+          <!-- <a href="contact.html" class="nav-item nav-link"><i class="fa fa-phone me-2"></i>Contact Admin</a> -->
 
           <?php if (isset($loginCheck['level']) && $loginCheck['level'] == 1) { ?> 
             <a href="<?=$baseUrl?>users/upgrade_akun.php" class="nav-item nav-link"><i class="fa fa-coins me-2"></i>Upgrade Akun</a>
@@ -76,7 +76,7 @@
   <div class="content">
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
-      <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+      <a href="<?=$baseUrl?>index.php" class="navbar-brand d-flex d-lg-none me-4">
         <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
       </a>
       <a href="#" class="sidebar-toggler flex-shrink-0">
@@ -103,3 +103,24 @@
     <!-- Single & Album Start -->
     <div class="container-fluid pt-4 px-4">
       <div class="row g-6">
+        <?php if (isset($_SESSION['flash_error'])) { ?>
+          <div class="col-12">
+            <div class="alert alert-danger" role="alert">
+              <h4 class="alert-heading">Peringatan !</h4>
+              <p style="font-size: 12px !important;">
+                <?=$_SESSION['flash_error']?>
+              </p>
+            </div>
+          </div>
+        <?php unset($_SESSION['flash_error']); } ?>
+
+        <?php if (isset($_SESSION['flash_success'])) { ?>
+          <div class="col-12">
+            <div class="alert alert-success" role="alert">
+              <h4 class="alert-heading">Berhasil !</h4>
+              <p style="font-size: 12px !important;">
+                <?=$_SESSION['flash_success']?>
+              </p>
+            </div>
+          </div>
+        <?php unset($_SESSION['flash_success']); } ?>
