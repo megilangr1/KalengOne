@@ -90,7 +90,7 @@
               <span class="d-none d-lg-inline-flex"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-              <a href="../logout.php" class="dropdown-item">Log Out</a>
+              <a href="<?=$baseUrl?>logout.php" class="dropdown-item">Log Out</a>
             </div>
           </div>
         </div>

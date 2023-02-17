@@ -57,10 +57,10 @@
             <div class="dropdown-menu bg-transparent border-0">
             </div>
           </div>
-          <a href="<?=$baseUrl?>album/index.php" class="nav-item nav-link"><i class="fa fa-headphones me-2"></i>Data Album</a>
-          <a href="<?=$baseUrl?>single/index.php" class="nav-item nav-link"><i class="fa fa-music me-2"></i>Submit Single</a>
-          <!-- <a href="request.html" class="nav-item nav-link"><i class="fa fa-history me-2"></i>Requests</a> -->
-          <!-- <a href="contact.html" class="nav-item nav-link"><i class="fa fa-phone me-2"></i>Contact Admin</a> -->
+          <?php if (isset($loginCheck['level']) && $loginCheck['level'] == 2) { ?> 
+            <a href="<?=$baseUrl?>album/index.php" class="nav-item nav-link"><i class="fa fa-headphones me-2"></i>Data Album</a>
+            <a href="<?=$baseUrl?>single/index.php" class="nav-item nav-link"><i class="fa fa-music me-2"></i>Submit Single</a>
+          <?php } ?>
 
           <?php if (isset($loginCheck['level']) && $loginCheck['level'] == 1) { ?> 
             <a href="<?=$baseUrl?>users/upgrade_akun.php" class="nav-item nav-link"><i class="fa fa-coins me-2"></i>Upgrade Akun</a>
@@ -91,7 +91,7 @@
               <span class="d-none d-lg-inline-flex"></span>
             </a>
             <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-              <a href="logout.php" class="dropdown-item">Log Out</a>
+              <a href="<?=$baseUrl?>logout.php" class="dropdown-item">Log Out</a>
             </div>
           </div>
         </div>
