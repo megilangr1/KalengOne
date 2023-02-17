@@ -235,7 +235,7 @@ if (isset($_GET['edit'])) {
               'error_msg' => 'Gagal Menyimpan Data Album !',
             ]; 
           } else {
-            $_SESSION['flash_success'] = "Data Album di-Tambahkan !"; 
+            $_SESSION['flash_success'] = "Data Album di-Ubah !"; 
             echo "<script>window.location='". $baseUrl ."album/index.php';</script>";
             exit();
           }
@@ -257,7 +257,7 @@ if (isset($_GET['edit'])) {
             'error_msg' => 'Gagal Menyimpan Data Album !',
           ]; 
         } else {
-          $_SESSION['flash_success'] = "Data Album di-Tambahkan !"; 
+          $_SESSION['flash_success'] = "Data Album di-Ubah !"; 
           echo "<script>window.location='". $baseUrl ."album/index.php';</script>";
           exit();
         }
@@ -284,10 +284,6 @@ if (isset($_GET['delete'])) {
       if ($searchedData->lokasi_file != null) {
         if (file_exists('../'. $searchedData->lokasi_file)) {
           $removeFile = unlink('../'. $searchedData->lokasi_file);
-          if (!$removeFile) {
-            var_dump($removeFile);
-            exit();
-          }
         }
       }
       

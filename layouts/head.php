@@ -58,7 +58,7 @@
             </div>
           </div>
           <a href="<?=$baseUrl?>album/index.php" class="nav-item nav-link"><i class="fa fa-headphones me-2"></i>Data Album</a>
-          <a href="form_single.html" class="nav-item nav-link"><i class="fa fa-music me-2"></i>Submit Single</a>
+          <a href="<?=$baseUrl?>single/index.php" class="nav-item nav-link"><i class="fa fa-music me-2"></i>Submit Single</a>
           <!-- <a href="request.html" class="nav-item nav-link"><i class="fa fa-history me-2"></i>Requests</a> -->
           <!-- <a href="contact.html" class="nav-item nav-link"><i class="fa fa-phone me-2"></i>Contact Admin</a> -->
 
