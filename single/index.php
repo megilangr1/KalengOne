@@ -499,7 +499,7 @@ if (isset($_GET['delete'])) {
                       </button>
                     <?php } else { ?>
                       <button type="submit" class="btn btn-success" style="width: 100% !important;" name="buatSingle">
-                        <span class="fa fa-check"></span> &ensp; Buat Album
+                        <span class="fa fa-check"></span> &ensp; Buat Single
                       </button>
                     <?php } ?>
                   </div>
@@ -548,6 +548,16 @@ if (isset($_GET['delete'])) {
                           </div>
                         </td>
                       </tr>
+                      <?php if ($value['lokasi_file_single'] != null) { ?>
+                        <tr>
+                          <td class="aling-middle text-center" colspan="7">
+                            <audio controls>
+                              <source src="<?=$baseUrl?>/<?=$value['lokasi_file_single']?>" type="audio/mpeg">
+                              Your browser does not support the audio element.
+                            </audio>
+                          </td>
+                        </tr>
+                      <?php } else { echo "-"; } ?>
                     <?php } ?>
                   <?php } else { ?>
                     <tr>
